@@ -29,7 +29,7 @@
                                 </td>
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium justify-end space-x-8">
-                                    <a href="" class="text-blue-400 hover:text-blue-800">Edit</a>
+                                    <a href="{{ route('admin.permissions.edit', $permission->id )  }}" class="text-blue-400 hover:text-blue-800">Edit</a>
                                     <a href="#" class="text-red-400 hover:text-red-800">Delete</a>
                                 </td>
                             </tr>

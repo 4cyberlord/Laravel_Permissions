@@ -26,4 +26,16 @@ class PermissionController extends Controller
         Permission::create($validated);
         return to_route('admin.permissions.index');
     }
+
+    public function edit(Permission $permission)
+    {
+        return view('admin.permissions.edit', compact('permission'));
+    }
+
+    public function update(Request $request, Permission $permission)
+    {
+        $validated = $request->validate(['name' => 'required', 'min:3']);
+        $permission->update($validated);
+        return to_route('admin.permissions.index');
+    }
 }
