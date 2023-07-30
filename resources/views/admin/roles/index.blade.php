@@ -31,7 +31,12 @@
                                     class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium justify-end space-x-8">
                                     <a href="{{ route('admin.role.edit', $role->id ) }}"
                                         class="text-blue-400 hover:text-blue-800">Edit</a>
-                                    <a href="#" class="text-red-400 hover:text-red-800">Delete</a>
+                                    <form class="text-red-400 hover:text-red-800 inline" action="{{ route('admin.role.destroy', $role->id )}}" method="POST"
+                                        onsubmit="return confirm('Are you sure?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

@@ -26,7 +26,10 @@ class RoleController extends Controller
         $validated = $request->validate(['name' => ['required', 'min:3']]);
         Role::create($validated);
 
-        return to_route('admin.role.index');
+        return to_route('admin.role.index')->with('message', [
+            'text' => 'Role Created Successfully',
+            'data' => 'Welcome on board ' . $validated['name'],
+        ]);
     }
 
     public function edit(Role $role)
@@ -39,5 +42,11 @@ class RoleController extends Controller
         $validated = $request->validate(['name' => ['required', 'min:3']]);
         $role->update($validated);
         return to_route('admin.role.index');
+    }
+
+    public function destroy(Role $role)
+    {
+        $role->delete();
+        return back();
     }
 }
