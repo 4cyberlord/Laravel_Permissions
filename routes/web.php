@@ -29,6 +29,8 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [IndexController::class, 'index'])->name('index'); // admin.index -> because of the (admin.) added. prefix the name down
     Route::resource('/role', RoleController::class);
+    Route::post('/roles/{role}/permissions', [RoleController::class, 'assignPermissions'])->name('roles.permissions');
+    Route::delete('/roles/{role}/permissions/{permission}', [RoleController::class, 'revokePermissions'])->name('roles.permissions.revoke');
     Route::resource('/permissions', PermissionController::class);
 });
 
