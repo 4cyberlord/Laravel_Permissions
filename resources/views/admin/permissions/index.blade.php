@@ -3,7 +3,7 @@
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="flex justify-end mb-4">
-                    <a href='{{ route('admin.permissions.create') }}'
+                    <a href='{{ route("admin.permissions.create") }}'
                         class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider bg-green-500 text-white rounded-full mt-2 my-2">
                         Create Permission
                     </a>
@@ -29,8 +29,17 @@
                                 </td>
                                 <td
                                     class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium justify-end space-x-8">
-                                    <a href="{{ route('admin.permissions.edit', $permission->id )  }}" class="text-blue-400 hover:text-blue-800">Edit</a>
-                                    <a href="#" class="text-red-400 hover:text-red-800">Delete</a>
+                                    <a href="{{ route('admin.permissions.edit', $permission->id ) }}"
+                                        class="text-blue-400 hover:text-blue-800">
+                                        Edit
+                                    </a>
+                                    <form class="text-red-400 hover:text-red-800 inline"
+                                        action="{{ route('admin.permissions.destroy', $permission->id )}}" method="POST"
+                                        onsubmit="return confirm('Are you sure?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
